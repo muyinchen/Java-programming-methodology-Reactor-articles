@@ -55,6 +55,7 @@ public class DemoHooksTrace {
         // throw new IllegalStateException();
     }
 
+
  /*  @Test
     public void lastOperatorTest() {
         Hooks.onLastOperator(Operators.lift((sc, sub) ->

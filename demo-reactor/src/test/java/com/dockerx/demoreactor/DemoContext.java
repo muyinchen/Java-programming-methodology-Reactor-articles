@@ -33,13 +33,16 @@ public class DemoContext {
         String key = "message";
         Mono<String> r = Mono.subscriberContext() // <1>
                              .map( ctx -> ctx.put(key, "Hello")) // <2>
+  .doOnNext(ctx -> {
+                    System.out.println((String) ctx.get(key));})
                              .flatMap( ctx -> Mono.subscriberContext()) // <3>
+
                              .map( ctx -> ctx.getOrDefault(key,"Default")); // <4>
         r.subscribe(System.out::println);
 
-        StepVerifier.create(r)
-                    .expectNext("Default") // <5>
-                    .verifyComplete();
+//        StepVerifier.create(r)
+//                    .expectNext("Default") // <5>
+//                    .verifyComplete();
     }
 
 

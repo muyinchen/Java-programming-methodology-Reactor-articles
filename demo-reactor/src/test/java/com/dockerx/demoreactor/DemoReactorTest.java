@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.assertj.core.api.Assertions.*;
 
+
 /**
  * @author Author  知秋
  * @email fei6751803@163.com
@@ -259,7 +260,7 @@ public class DemoReactorTest {
     public void withInitialContext() {
         StepVerifier.create(Mono.subscriberContext(),
                 StepVerifierOptions.create().withInitialContext(Context.of("foo", "bar")))
-                    .assertNext(c -> Assertions.assertThat(c.getOrDefault("foo", "baz"))
+                    .assertNext(c -> assertThat(c.getOrDefault("foo", "baz"))
                                                .isEqualTo("bar"))
                     .verifyComplete();
     }
@@ -325,13 +326,14 @@ public class DemoReactorTest {
     public void misbehavingAllowsOverflow() {
         TestPublisher<String> publisher = TestPublisher.createNoncompliant(TestPublisher.Violation.REQUEST_OVERFLOW);
 
+
         assertThatExceptionOfType(AssertionError.class)
                 .isThrownBy(() -> StepVerifier.create(publisher, 1)
                                               .then(() -> publisher.emit("foo", "bar"))
                                               .expectNext("foo")
                                               .expectNext("bar")
-                                              //.expectComplete() //n/a
-                                              .expectError()
+                                              .expectComplete() //n/a
+                                             // .expectError()
                                               .verify())
                 .withMessageContaining("expected production of at most 1;");
 

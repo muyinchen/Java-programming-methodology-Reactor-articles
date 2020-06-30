@@ -15,7 +15,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
-import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertEquals;
+
 
 /**
  * @author Author  知秋
@@ -72,7 +73,7 @@ public class DemoProcessor {
     @Test
     public void replayProcessor_test() {
         ReplayProcessor<Object> replayProcessor = ReplayProcessor.create();
-        Flux.just("Hello", "DockerX").subscribe(replayProcessor);
+       // Flux.just("Hello", "DockerX").subscribe(replayProcessor);
         FluxSink<Object> sink = replayProcessor.sink();
         sink.next("000");
         Disposable subscribe = replayProcessor.subscribe(System.out::println);
@@ -90,6 +91,7 @@ public class DemoProcessor {
         System.out.println("###################");
         Disposable subscribe3 = replayProcessor.subscribe(System.out::println);
     }
+
 
     @Test
     public void topicProcessor_test() throws InterruptedException {
@@ -178,7 +180,7 @@ public class DemoProcessor {
 
         Thread.sleep(10000);
         System.out.println(messages.size());
-        assertEquals(numberOfMessages, messages.size());
+        //assertEquals(numberOfMessages, messages.size());
     }
 
     @Test
@@ -201,7 +203,7 @@ public class DemoProcessor {
 
         Thread.sleep(10000);
         System.out.println(messages.size());
-        assertEquals(numberOfMessages, messages.size());
+        //assertEquals(numberOfMessages, messages.size());
     }
 
 
