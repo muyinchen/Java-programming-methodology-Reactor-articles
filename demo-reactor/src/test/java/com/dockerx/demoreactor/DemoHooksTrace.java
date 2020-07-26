@@ -171,7 +171,7 @@ public class DemoHooksTrace {
         Hooks.resetOnLastOperator();
     }*/
 
-    @Test
+    /*@Test
     public void eachOperatorTest() {
         Hooks.onEachOperator(Operators.lift((sc, sub) ->
                 new CoreSubscriber<>() {
@@ -215,7 +215,7 @@ public class DemoHooksTrace {
                     .verifyComplete();
 
         Hooks.resetOnEachOperator();
-    }
+    }*/
 
 
     @Test
